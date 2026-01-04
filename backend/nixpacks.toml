@@ -4,17 +4,5 @@ nixPkgs = ["nodejs_20", "python311", "python311Packages.requests", "python311Pac
 [phases.install]
 cmds = ["npm install"]
 
-[phases.build]
-cmds = [
-  "echo '=== Fetching Kalshi Markets ==='",
-  "python scripts/get_kalshi.py || echo 'Kalshi fetch failed'",
-  "echo '=== Fetching Polymarket Markets ==='",
-  "python scripts/get_polymarket.py || echo 'Polymarket fetch failed'",
-  "echo '=== Generating Embeddings ==='",
-  "python scripts/generate_embeddings.py || echo 'Embeddings generation failed'",
-  "echo '=== Checking generated files ==='",
-  "ls -lh data/ || echo 'No data directory found'"
-]
-
 [start]
-cmd = "node server.js"
+cmd = "./start.sh"
