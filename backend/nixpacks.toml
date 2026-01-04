@@ -6,9 +6,14 @@ cmds = ["npm install"]
 
 [phases.build]
 cmds = [
-  "python scripts/get_kalshi.py",
-  "python scripts/get_polymarket.py",
-  "python scripts/generate_embeddings.py"
+  "echo '=== Fetching Kalshi Markets ==='",
+  "python scripts/get_kalshi.py || echo 'Kalshi fetch failed'",
+  "echo '=== Fetching Polymarket Markets ==='",
+  "python scripts/get_polymarket.py || echo 'Polymarket fetch failed'",
+  "echo '=== Generating Embeddings ==='",
+  "python scripts/generate_embeddings.py || echo 'Embeddings generation failed'",
+  "echo '=== Checking generated files ==='",
+  "ls -lh data/ || echo 'No data directory found'"
 ]
 
 [start]
