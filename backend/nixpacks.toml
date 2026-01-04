@@ -1,11 +1,8 @@
 [phases.setup]
-nixPkgs = ["nodejs_20", "python311", "python311Packages.pip"]
+nixPkgs = ["nodejs_20", "python311", "python311Packages.requests", "python311Packages.openai"]
 
 [phases.install]
-cmds = [
-  "npm install",
-  "pip install requests"
-]
+cmds = ["npm install"]
 
 [phases.build]
 cmds = [
