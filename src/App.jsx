@@ -3,6 +3,7 @@ import Fuse from 'fuse.js';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Search, TrendingUp, DollarSign, Activity, Clock, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { API_URL } from './config';
 import './App.css';
 
 function App() {
@@ -197,7 +198,7 @@ function App() {
       // HYBRID SEARCH: Combine semantic + keyword search for best results
 
       // 1. Semantic search - get top 100 semantically similar events
-      const semanticSearchResponse = await fetch('http://localhost:3001/api/semantic-search', {
+      const semanticSearchResponse = await fetch(`${API_URL}/api/semantic-search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -247,7 +248,7 @@ function App() {
       }));
 
       // Send to AI backend with event-level context
-      const response = await fetch('http://localhost:3001/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
